@@ -36,7 +36,7 @@ const Navbar = () => {
                 <div className="navbar-start lg:ml-3">
 
                     <div className=' flex items-center'>
-                        <img className='rounded-lg object-cover h-full w-10 flex' src={logo} alt="" />
+                        <img className='rounded-md object-cover h-full w-14  flex bg-white' src={logo} alt="" />
                         <Link to={'/'} className="btn btn-ghost normal-case text-xl font-bold ">
                             <span className='text-orange-600'>Ogerio</span><span>.</span><span className='text-yellow-500'>Phone</span>
                         </Link>
