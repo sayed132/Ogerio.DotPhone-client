@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PrimaryButton from '../../../Components/PrimaryButton';
 
 const HomeCategoryCard = ({ category }) => {
     console.log(category);
-    const { company_img, company_name, details, image_url, name, _id } = category;
+    const { company_img, condition, price, details, image_url, name, _id } = category;
     return (
         <div className="card extra-style card-compact w-100 bg-base-100 shadow-2xl">
 
             <figure><img className='h-52' src={image_url} alt="" /></figure>
 
             <div className="card-body">
+                <div className='flex justify-between items-center'>
                 <h2 className="card-title">{name}</h2>
+                <h3 className="card-title text-blue-700">{condition}</h3>
+                
+                </div>
                 <div>
                     <div style={{ margin: '0% 0% 30% 0%' }} className=''>
                         {
@@ -23,11 +28,11 @@ const HomeCategoryCard = ({ category }) => {
 
                     <div className='flex justify-between items-center'>
                         <div>
-                            <p className='text-2xl text-blue-500 font-semibold'>Company: {company_name}</p>
+                            <p className='text-2xl text-orange-500 font-semibold'>Price: {price}</p>
                         </div>
                         <div className="card-actions ">
-                            <Link to={`/services/${_id}`}>
-                                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg">See All</button>
+                            <Link to={`/products/${_id}`}>
+                                <PrimaryButton>See All</PrimaryButton>
                             </Link>
                         </div>
                     </div>

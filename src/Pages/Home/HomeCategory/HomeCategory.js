@@ -6,7 +6,7 @@ import HomeCategoryCard from './HomeCategoryCard';
 const HomeCategory = () => {
     const { data: homeCategory = [], refetch, isLoading } = useQuery({
         queryKey: ['home-phone-category'],
-        queryFn: () => fetch('http://localhost:5000/home-phone-category')
+        queryFn: () => fetch('http://localhost:5000/products')
             .then(res => res.json())
     
     })
