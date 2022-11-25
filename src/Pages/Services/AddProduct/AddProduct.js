@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
-const AddProduct = ({ category }) => {
+const AddProduct = ({ category, refetch }) => {
     const {user} = useContext(AuthContext)
     console.log(category);
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -45,7 +45,8 @@ const AddProduct = ({ category }) => {
                         uses: data.uses,
                         resellPrice: data.resell_price,
                         originalPrice: data.original_price,
-                        productDetails: data.details,
+                        details: data.details,
+                        category_name: data.category_name,
                         postedTime: time,
                         sellerName: name,
                         sellerEmail: email,
@@ -65,6 +66,7 @@ const AddProduct = ({ category }) => {
                         .then(result => {
                             console.log(result);
                             toast.success(`${data.name} is added successfully`);
+                            refetch()
                             navigate(`/products/${category?._id}`)
                         })
                 }
@@ -114,6 +116,13 @@ const AddProduct = ({ category }) => {
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Details About Phone</span></label>
                     <input type="text" {...register("details", {
+                        required: true
+                    })} className="input input-bordered w-full max-w-xs" />
+                    {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Phone Category</span></label>
+                    <input type="text" {...register("category_name", {
                         required: true
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
