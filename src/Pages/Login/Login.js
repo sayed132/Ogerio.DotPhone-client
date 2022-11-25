@@ -24,6 +24,7 @@ const Login = () => {
           .then(result => {
             const user = result.user;
             console.log(user);
+            toast.success('success fully login')
             navigate(from, { replace: true });
           })
           .catch(error => console.error(error))
@@ -37,6 +38,7 @@ const Login = () => {
                 const user = result.user;
                 // setLoginUserEmail(data.email);
                 console.log(user);
+                toast.success('success fully login')
                 navigate(from, { replace: true });
             })
             .catch(error => {

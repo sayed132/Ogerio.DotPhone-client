@@ -23,12 +23,12 @@ const Signup = () => {
                 const user = result.user;
                 const name = data?.name
                 const photoURL = data?.photoURL;
-                const selected = data?.selected;
-                console.log(user, selected);
+                const account_type = data?.selected;
+                console.log(user, account_type);
                 toast.success('User Created Successfully.');
                 navigate('/');
                 handleUpdateUserProfile(name, photoURL)
-                saveUser(data.name, data.email, selected)
+                saveUser(data.name, data.email, account_type)
             })
             .catch(error => {
                 console.log(error)
@@ -49,8 +49,8 @@ const Signup = () => {
             .catch(error => console.error(error));
     }
 
-    const saveUser = (name, email, selected) => {
-        const user = { name, email, selected };
+    const saveUser = (name, email, account_type) => {
+        const user = { name, email, account_type };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
