@@ -1,12 +1,13 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import Loading from '../../Shared/Loading/Loading';
 
-const AddProduct = ({ category, refetch }) => {
-    const {user} = useContext(AuthContext)
-    console.log(category);
+const AddProducts = () => {
+    const { user } = useContext(AuthContext)
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const navigate = useNavigate();
@@ -24,7 +25,6 @@ const AddProduct = ({ category, refetch }) => {
     const handleAddProduct = data => {
         const name = user?.displayName;
         const email = user?.email;
-        const categoryId = category._id
         const time = new Date().toLocaleString();
         const image = data.image[0];
         const formData = new FormData();
@@ -39,7 +39,6 @@ const AddProduct = ({ category, refetch }) => {
                 if (imgData.success) {
                     console.log(imgData.data.url);
                     const product = {
-                        categoryId ,
                         productName: data.name,
                         productLocation: data.location,
                         uses: data.uses,
@@ -66,17 +65,17 @@ const AddProduct = ({ category, refetch }) => {
                         .then(result => {
                             console.log(result);
                             toast.success(`${data.name} is added successfully`);
-                            refetch()
-                            navigate(`/products/${category?._id}`)
+
+                            // navigate(`/products/${category?._id}`)
                         })
                 }
             })
     }
 
-    
+
     return (
         <div className='w-96 p-7'>
-            <h2 className="text-2xl">Add Products {category.name} Categories</h2>
+            <h2 className="text-2xl">Add Products  Categories</h2>
             <form onSubmit={handleSubmit(handleAddProduct)}>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Phone Name</span></label>
@@ -122,10 +121,28 @@ const AddProduct = ({ category, refetch }) => {
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Phone Category</span></label>
-                    <input type="text" {...register("category_name", {
-                        required: true
-                    })} className="input input-bordered w-full max-w-xs" />
-                    {errors.email && <p className='text-red-500'>{errors.email.message}</p>}
+                    {/* <select
+                        {...register('specialty')}
+                        className="select input-bordered w-full max-w-xs">
+                        {
+                            specialties.map(specialty => <option
+                                key={specialty._id}
+                                value={specialty.name}
+                            >{specialty.name}</option>)
+                        }
+
+
+                    </select> */}
+
+                    <select
+                        {...register("category_name", {
+                            required: true
+                        })}
+                        className="select input-bordered w-full max-w-xs">
+                        <option>All Most Fresh</option>
+                        <option>Fresh</option>
+                        <option>Allmost New</option>
+                    </select>
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Photo</span></label>
@@ -134,10 +151,10 @@ const AddProduct = ({ category, refetch }) => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.img && <p className='text-red-500'>{errors.img.message}</p>}
                 </div>
-                <input className='btn btn-accent w-full mt-4' value="Add A Doctor" type="submit" />
+                <input className='btn btn-accent w-full mt-4' value="Add A Product" type="submit" />
             </form>
         </div>
     );
 };
 
-export default AddProduct;
+export default AddProducts;

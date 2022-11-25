@@ -50,7 +50,7 @@ const Signup = () => {
     }
 
     const saveUser = (name, email, selected) => {
-        const user = { name, email ,selected };
+        const user = { name, email, selected };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -101,9 +101,11 @@ const Signup = () => {
                         {errors.password && <p className='text-red-500'>{errors.password.message}</p>}
                     </div>
                     <div className="form-control w-full max-w-xs my-4 font-semibold">
-                        <select className="select select-info w-full max-w-xs" {...register("selected", {
-                            required: "account choose is Required"
-                        })}>
+                        <select
+                            {...register("selected", {
+                                required: true
+                            })}
+                            className="select input-bordered w-full max-w-xs">
                             <option >Buyer Account</option>
                             <option >Seller Account</option>
                         </select>

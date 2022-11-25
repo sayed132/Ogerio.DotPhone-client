@@ -4,7 +4,7 @@ import PrimaryButton from '../../../Components/PrimaryButton';
 
 const HomeCategoryCard = ({ category }) => {
     console.log(category);
-    const { company_img, condition, price, details, image_url, name, _id } = category;
+    const { company_img, category_name, price, details, image_url, name, _id } = category;
     return (
         <div className="card extra-style card-compact w-100 bg-base-100 shadow-2xl">
 
@@ -13,7 +13,7 @@ const HomeCategoryCard = ({ category }) => {
             <div className="card-body">
                 <div className='flex justify-between items-center'>
                 <h2 className="card-title">{name}</h2>
-                <h3 className="card-title text-blue-700">{condition}</h3>
+                <h3 className="card-title text-blue-700">{category_name}</h3>
                 
                 </div>
                 <div>
@@ -31,7 +31,7 @@ const HomeCategoryCard = ({ category }) => {
                             <p className='text-2xl text-orange-500 font-semibold'>Price: {price}</p>
                         </div>
                         <div className="card-actions ">
-                            <Link to={`/products/${_id}`}>
+                            <Link to={`/products/${category_name}`}>
                                 <PrimaryButton>See All</PrimaryButton>
                             </Link>
                         </div>
