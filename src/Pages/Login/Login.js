@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn , googleLogin} = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    // const [loginUserEmail, setLoginUserEmail] = useState('');
-    // const [token] = useToken(loginUserEmail);
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(loginUserEmail,createdUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
     const googleProvider = new GoogleAuthProvider();
@@ -19,6 +21,9 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
+    if (token) {
+        navigate(from, { replace: true });
+    }
     const handleGoogleSignIn = () => {
         googleLogin(googleProvider)
           .then(result => {
@@ -27,8 +32,9 @@ const Login = () => {
             const email = user?.email;
             const account_type = "Buyer Account"
             console.log(user);
+            setLoginUserEmail(email);
             toast.success('success fully login')
-            navigate(from, { replace: true });
+            // navigate(from, { replace: true });
             saveUser(name, email, account_type)
           })
           .catch(error => console.error(error))
@@ -40,10 +46,10 @@ const Login = () => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                // setLoginUserEmail(data.email);
                 console.log(user);
+                setLoginUserEmail(data.email);
                 toast.success('success fully login')
-                navigate(from, { replace: true });
+                // navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error.message)
@@ -63,7 +69,7 @@ const Login = () => {
             .then(res => res.json())
             .then(data => {
                 console.log('save user', data);
-                // setCreatedUserEmail(email);
+                setCreatedUserEmail(email);
             })
     }
     return (

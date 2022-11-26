@@ -64,8 +64,8 @@ const BookingModal = ({ bookingProduct, setBookingProduct, refetch }) => {
                         <input name="email" type="email" defaultValue={user?.email} readOnly disabled className="input w-full input-bordered" />
                         <input name="category_name" type="text" defaultValue={category_name} readOnly disabled className="input w-full input-bordered" />
                         <input name="resellPrice" type="text" defaultValue={resellPrice} readOnly disabled className="input w-full input-bordered" />
-                        <input name="phone" type="text" placeholder="Type Your Phone Number" className="input w-full input-bordered" />
-                        <input name="location" type="text" placeholder="Please Provide Your Location " className="input w-full input-bordered" />
+                        <input required name="phone" type="text" placeholder="Type Your Phone Number" className="input w-full input-bordered" />
+                        <input required name="location" type="text" placeholder="Please Provide Your Location " className="input w-full input-bordered" />
                         <br />
                         <input className='btn btn-accent w-full' type="submit" value="Submit" />
                     </form>

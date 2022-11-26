@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Dashboard = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
     const url = `http://localhost:5000/bookings?buyerEmail=${user?.email}`;
 
@@ -11,10 +11,15 @@ const Dashboard = () => {
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
-            const res = await fetch(url);
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            if(res.status === 401 || res.status === 403){
+                return logOut()
+            }
             const data = await res.json();
-            console.log(data);
-            console.log(bookings);
             return data;
         }
     })
