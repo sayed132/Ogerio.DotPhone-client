@@ -3,7 +3,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const BookingModal = ({ bookingProduct, setBookingProduct, refetch }) => {
-    const { productName, category_name, resellPrice, } = bookingProduct;
+    const { productName, category_name, resellPrice, image } = bookingProduct;
     console.log("inside", bookingProduct);
     const { user } = useContext(AuthContext);
 
@@ -21,6 +21,7 @@ const BookingModal = ({ bookingProduct, setBookingProduct, refetch }) => {
         const booking = {
             productName,
             resellPrice,
+            image,
             category_name,
             bookingTime: time,
             buyerName: name,

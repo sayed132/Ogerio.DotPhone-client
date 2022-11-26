@@ -32,6 +32,7 @@ const Dashboard = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Avatar</th>
                             <th>Name</th>
                             <th>Category</th>
                             <th>Product</th>
@@ -45,6 +46,11 @@ const Dashboard = () => {
                         {
                             bookings.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
+                                <td><div className="avatar">
+                                <div className="w-12 rounded-full">
+                                    <img src={booking.image} alt="" />
+                                </div>
+                            </div></td>
                                 <td>{booking.buyerName}</td>
                                 <td>{booking.category_name}</td>
                                 <td>{booking.productName}</td>

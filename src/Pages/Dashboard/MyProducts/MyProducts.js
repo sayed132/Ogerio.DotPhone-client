@@ -50,6 +50,7 @@ const MyProducts = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Image</th>
                             <th>Category</th>
                             <th>Product</th>
                             <th>location</th>
@@ -64,6 +65,11 @@ const MyProducts = () => {
                         {
                             products.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
+                                <td><div className="avatar">
+                                <div className="w-12 rounded-full">
+                                    <img src={product.image} alt="" />
+                                </div>
+                            </div></td>
                                 <td>{product.category_name}</td>
                                 <td>{product.productName}</td>
                                 <td>{product.productLocation}</td>

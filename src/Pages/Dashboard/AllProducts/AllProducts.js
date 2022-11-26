@@ -36,6 +36,7 @@ const AllProducts = () => {
                     <thead>
                         <tr>
                             <th>n</th>
+                            <th>Image</th>
                             <th>Seller Name</th>
                             <th>Seller Email</th>
                             <th>Category</th>
@@ -51,6 +52,11 @@ const AllProducts = () => {
                         {
                             products.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
+                                <td><div className="avatar">
+                                    <div className="w-12 rounded-full">
+                                        <img src={product.image} alt="" />
+                                    </div>
+                                </div></td>
                                 <td>{product.sellerName}</td>
                                 <td>{product.sellerEmail}</td>
                                 <td>{product.category_name}</td>
@@ -60,7 +66,7 @@ const AllProducts = () => {
                                 <td>{product.originalPrice}</td>
                                 <td>{product.productLocation}</td>
                                 <td>{product.uses}</td>
-                                
+
                             </tr>)
                         }
 

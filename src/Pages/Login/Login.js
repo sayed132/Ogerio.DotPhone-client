@@ -30,13 +30,14 @@ const Login = () => {
             const user = result.user;
             const name = user?.displayName;
             const email = user?.email;
+            const photoURL = user?.photoURL;
             const account_type = "Buyer Account"
             const account_create_time = new Date().toLocaleString();
             console.log(user);
             setLoginUserEmail(email);
             toast.success('success fully login')
             // navigate(from, { replace: true });
-            saveUser(name, email, account_type, account_create_time)
+            saveUser(name, email, account_type, account_create_time, photoURL)
           })
           .catch(error => console.error(error))
       }
@@ -58,8 +59,8 @@ const Login = () => {
             });
     }
 
-    const saveUser = (name, email, account_type, account_create_time) => {
-        const user = { name, email, account_type , account_create_time};
+    const saveUser = (name, email, account_type, account_create_time, photoURL) => {
+        const user = { name, email, account_type , account_create_time, photoURL};
         fetch('http://localhost:5000/users', {
             method: 'PUT',
             headers: {
