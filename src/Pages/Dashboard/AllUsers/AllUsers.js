@@ -13,7 +13,7 @@ const AllUsers = () => {
     });
 
     // const handleMakeAdmin = id => {
-    //     fetch(`https://doctors-portal-server-site-xi.vercel.app/users/admin/${id}`, {
+    //     fetch(`http://localhost:5000/users/admin/${id}`, {
     //         method: 'PUT',
     //         headers: {
     //             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -49,7 +49,7 @@ const AllUsers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 {/* <td>{user?.role !== 'admin' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Admin</button>}</td> */}
-                                <td><button className='btn btn-xs btn-primary'>Admin</button></td>
+                                {/* <td><button className='btn btn-xs btn-primary'>Admin</button></td> */}
                                 <td><button className='btn btn-xs btn-danger'>Delete</button></td>
                             </tr>)
                         }
