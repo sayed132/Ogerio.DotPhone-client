@@ -23,9 +23,13 @@ const Login = () => {
         googleLogin(googleProvider)
           .then(result => {
             const user = result.user;
+            const name = user?.displayName;
+            const email = user?.email;
+            const account_type = "Buyer Account"
             console.log(user);
             toast.success('success fully login')
             navigate(from, { replace: true });
+            saveUser(name, email, account_type)
           })
           .catch(error => console.error(error))
       }
@@ -45,6 +49,22 @@ const Login = () => {
                 console.log(error.message)
                 setLoginError(error.message);
             });
+    }
+
+    const saveUser = (name, email, account_type) => {
+        const user = { name, email, account_type };
+        fetch('http://localhost:5000/users', {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('save user', data);
+                // setCreatedUserEmail(email);
+            })
     }
     return (
         <div className='h-[800px] flex justify-center items-center'>

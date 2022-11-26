@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
 import Error from "../../Error/Error";
+import DashboardLayout from "../../Layouts/DashboardLayout";
 import Main from "../../Layouts/Main";
 import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
+import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductDetails from "../../Pages/Services/ProductDetails/ProductDetails";
@@ -35,40 +37,26 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <Signup></Signup>
             },
+            
+        ]
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <Error></Error>,
+        children: [
             {
-                path: '/blog'
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
             },
+            {
+                path: '/dashboard/add-product',
+                element: <AddProducts></AddProducts>
+            }
         ]
     },
 
-    // {
-    //     path: '/dashboard',
-    //     element: <PrivateRoute><DashboardLayouts></DashboardLayouts></PrivateRoute>,
-    //     errorElement: <Error></Error>,
-    //     children: [
-    //         {
-    //             path: '/dashboard',
-    //             element: <MyAppointment></MyAppointment>
-    //         },
-    //         {
-    //             path: '/dashboard/allusers',
-    //             element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/add-doctor',
-    //             element: <AdminRoute><AddDoctor></AddDoctor></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/managedoctors',
-    //             element: <AdminRoute><ManageDoctor></ManageDoctor></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/payment/:id',
-    //             element: <Payment></Payment>,
-    //             loader: ({params}) => fetch(`https://doctors-portal-server-site-xi.vercel.app/bookings/${params.id}`)
-    //         },
-    //     ]
-    // }
+
 ])
 
 export default router;
