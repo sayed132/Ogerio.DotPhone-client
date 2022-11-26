@@ -3,6 +3,7 @@ import Error from "../../Error/Error";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import Main from "../../Layouts/Main";
 import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
+import AllProducts from "../../Pages/Dashboard/AllProducts/AllProducts";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: '/dashboard/all-products',
+                element: <AdminRoute><AllProducts></AllProducts></AdminRoute>
             },
             {
                 path: '/dashboard/my-products',
