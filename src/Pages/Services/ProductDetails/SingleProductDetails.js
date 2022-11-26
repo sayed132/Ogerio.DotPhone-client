@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../../Components/PrimaryButton';
@@ -20,7 +21,7 @@ const SingleProductDetails = ({ product, setBookingProduct }) => {
                     <div className='mb-12 text-1xl font-semibold text-gray-400'>
                         <p>Location: {productLocation}</p>
                         <p>Years of uses: {uses}</p>
-                        <h3>Post by: {sellerName}</h3>
+                        <h3>Post by: {sellerName} </h3>
                         <p>Org. Price: {originalPrice}</p>
                         <p>Post Time: {postedTime}</p>
                     </div>

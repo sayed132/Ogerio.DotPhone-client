@@ -52,12 +52,11 @@ const AddProducts = () => {
                         image: imgData.data.url
                     }
 
-                    // save doctor information to the database
                     fetch('http://localhost:5000/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',
-                            // authorization: `bearer ${localStorage.getItem('accessToken')}`
+                            authorization: `bearer ${localStorage.getItem('accessToken')}`
                         },
                         body: JSON.stringify(product)
                     })
@@ -65,8 +64,7 @@ const AddProducts = () => {
                         .then(result => {
                             console.log(result);
                             toast.success(`${data.name} is added successfully`);
-
-                            // navigate(`/products/${category?._id}`)
+                            navigate('/dashboard/my-products')
                         })
                 }
             })

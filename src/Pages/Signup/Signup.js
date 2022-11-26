@@ -22,13 +22,14 @@ const Signup = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                const account_create_time = new Date().toLocaleString();
                 const name = data?.name
                 const photoURL = data?.photoURL;
                 const account_type = data?.selected;
                 console.log(user, account_type);
                 toast.success('User Created Successfully.');
                 handleUpdateUserProfile(name, photoURL)
-                saveUser(data.name, data.email, account_type)
+                saveUser(data.name, data.email, account_type, account_create_time)
             })
             .catch(error => {
                 console.log(error)
@@ -49,8 +50,8 @@ const Signup = () => {
             .catch(error => console.error(error));
     }
 
-    const saveUser = (name, email, account_type) => {
-        const user = { name, email, account_type };
+    const saveUser = (name, email, account_type, account_create_time) => {
+        const user = { name, email, account_type, account_create_time };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {

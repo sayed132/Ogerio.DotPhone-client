@@ -34,7 +34,6 @@ const DashboardLayout = () => {
                            isAdmin &&
                             <>
                                 <li><Link to="/dashboard/allusers">All users</Link></li>
-                                <li><Link to="/dashboard/all-buyer">All Buyer</Link></li>
                                 
                             </>
                         }
