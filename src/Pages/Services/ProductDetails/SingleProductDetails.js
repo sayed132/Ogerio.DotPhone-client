@@ -2,9 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PrimaryButton from '../../../Components/PrimaryButton';
+import blueTick from '../../../Assets/bluetick.png'
 
-const SingleProductDetails = ({ product, setBookingProduct }) => {
+const SingleProductDetails = ({ product, setBookingProduct, verify, setVerify }) => {
     console.log(product);
+    console.log('inside this', verify);
     const { resellPrice, postedTime, image, sellerName, sellerEmail, productName, originalPrice, _id, category_name, productLocation, uses } = product;
     return (
         <div className="card extra-style card-compact w-100 bg-base-100 shadow-2xl">
@@ -21,7 +23,12 @@ const SingleProductDetails = ({ product, setBookingProduct }) => {
                     <div className='mb-12 text-1xl font-semibold text-gray-400'>
                         <p>Location: {productLocation}</p>
                         <p>Years of uses: {uses}</p>
-                        <h3>Post by: {sellerName} </h3>
+                        <h3>Posted by: 
+                        {
+                         verify?.verify === true && sellerName && <img className='w-4 h-4 rounded-full' src={blueTick} alt="verify" />
+                        }
+                        {sellerName}
+                        </h3>
                         <p>Org. Price: {originalPrice}</p>
                         <p>Post Time: {postedTime}</p>
                     </div>

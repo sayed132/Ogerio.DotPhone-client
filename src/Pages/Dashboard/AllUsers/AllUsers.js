@@ -28,6 +28,22 @@ const AllUsers = () => {
             })
     }
 
+    const handleDelete = user => {
+        fetch(`http://localhost:5000/admin/users/${user}`, {
+            method: 'DELETE', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.deletedCount > 0){
+                refetch();
+                toast.success(`this  ${user.name} user deleted successfully`)
+            }
+        })
+    }
+
     return (
         <div>
             <h2 className="text-3xl">All Users</h2>
@@ -36,6 +52,7 @@ const AllUsers = () => {
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Avatar</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Account</th>
@@ -49,22 +66,26 @@ const AllUsers = () => {
                             users.map((user, i) => <tr key={user._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
-                                <div className="w-12 rounded-full">
-                                    <img src={user.photoURL} alt="" />
-                                </div>
-                            </div></td>
+                                    <div className="w-12 rounded-full">
+                                        <img src={user.photoURL} alt="" />
+                                    </div>
+                                </div></td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.account_type}</td>
                                 <td>{user.account_create_time}</td>
-                                <td>{user?.status !== 'verify' && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Verified</button>}</td>
-                                <td><button className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td>
+                                    {user?.verify !== true && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Verified</button>}
+                                    {user?.verify && <p className='bg-green-600 text-white text-center text-sm rounded-lg py-1'>Verified</p>}
+                                </td>
+                                <td>{<button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-danger'>Delete</button>}</td>
                             </tr>)
                         }
 
                     </tbody>
                 </table>
             </div>
+            
         </div>
     );
 };

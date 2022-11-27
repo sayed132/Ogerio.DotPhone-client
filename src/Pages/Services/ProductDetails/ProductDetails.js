@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Loading from '../../Shared/Loading/Loading';
 import BookingModal from '../BookingModal/BookingModal';
@@ -7,6 +7,18 @@ import SingleProductDetails from './SingleProductDetails';
 
 const ProductDetails = () => {
     const category = useLoaderData()
+    const [verify, setVerify] = useState(false)
+    useEffect(() => {
+        
+            fetch('http://localhost:5000/users')
+                .then(res => res.json())
+                .then(data => {
+                    console.log('users data',data);
+                    setVerify(data)
+                })
+        
+    }, [])
+    console.log('inside data',verify);
     const [bookingProduct, setBookingProduct] = useState(null);
 
     const { data: products = [], refetch, isLoading } = useQuery({
@@ -28,13 +40,17 @@ const ProductDetails = () => {
                         key={product._id}
                         product={product}
                         setBookingProduct={setBookingProduct}
+                        setVerify={setVerify}
+                        verify={verify}
                     ></SingleProductDetails>)
                 }
                 {
                     bookingProduct &&
                     <BookingModal
                         bookingProduct={bookingProduct}
+                        verify={verify}
                         setBookingProduct={setBookingProduct}
+                        setVerify={setVerify}
                         refetch={refetch}
                     ></BookingModal>
                 }

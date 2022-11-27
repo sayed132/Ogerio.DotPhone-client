@@ -59,8 +59,8 @@ const Login = () => {
             });
     }
 
-    const saveUser = (name, email, account_type, account_create_time, photoURL) => {
-        const user = { name, email, account_type , account_create_time, photoURL};
+    const saveUser = (name, email, account_type,) => {
+        const user = { name, email, account_type , };
         fetch('http://localhost:5000/users', {
             method: 'PUT',
             headers: {

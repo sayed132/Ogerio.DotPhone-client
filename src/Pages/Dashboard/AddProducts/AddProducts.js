@@ -46,6 +46,7 @@ const AddProducts = () => {
                         originalPrice: data.original_price,
                         details: data.details,
                         category_name: data.category_name,
+                        condition: data.condition,
                         postedTime: time,
                         sellerName: name,
                         sellerEmail: email,
@@ -140,6 +141,18 @@ const AddProducts = () => {
                         <option>All Most Fresh</option>
                         <option>Fresh</option>
                         <option>Allmost New</option>
+                    </select>
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Phone Condition</span></label>
+                    <select
+                        {...register("condition", {
+                            required: true
+                        })}
+                        className="select input-bordered w-full max-w-xs">
+                        <option>excellent</option>
+                        <option>good</option>
+                        <option>fair</option>
                     </select>
                 </div>
                 <div className="form-control w-full max-w-xs">

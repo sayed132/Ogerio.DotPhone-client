@@ -8,6 +8,8 @@ import AllProducts from "../../Pages/Dashboard/AllProducts/AllProducts";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import MyReqOrders from "../../Pages/Dashboard/MyReqOrders/MyReqOrders";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductDetails from "../../Pages/Services/ProductDetails/ProductDetails";
@@ -64,6 +66,10 @@ const router = createBrowserRouter([
                 element: <SellerRoute><AddProducts></AddProducts></SellerRoute>
             },
             {
+                path: '/dashboard/req-order',
+                element: <SellerRoute><MyReqOrders></MyReqOrders></SellerRoute>
+            },
+            {
                 path: '/dashboard/allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
@@ -74,7 +80,12 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/my-products',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
-            }
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+            },
         ]
     },
 
