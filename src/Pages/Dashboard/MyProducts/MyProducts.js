@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const MyProducts = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/my-products?sellerEmail=${user?.email}`;
+    const url = `https://assignment-12-server-site-eight.vercel.app/my-products?sellerEmail=${user?.email}`;
 
 
     const { data: products = [], refetch } = useQuery({
@@ -27,7 +27,7 @@ const MyProducts = () => {
     })
 
     const handleDelete = product => {
-        fetch(`http://localhost:5000/my-products/${product}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/my-products/${product}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const MyProducts = () => {
     }
     
     const handleAdvertised = id => {
-        fetch(`http://localhost:5000/my-products/${id}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/my-products/${id}`, {
             method: 'PATCH',
             headers: {
                 "content-type": "application/json"

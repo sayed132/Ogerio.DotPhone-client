@@ -31,7 +31,7 @@ const SingleProductDetails = ({ product, setBookingProduct, verify, setVerify })
             reporterName
         }
 
-        fetch(`http://localhost:5000/report-to-admin/${id}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/report-to-admin/${id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

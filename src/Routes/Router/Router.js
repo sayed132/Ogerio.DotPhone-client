@@ -32,11 +32,7 @@ const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/products-category/${params.id}`)
-            },
-            {
-                path: 'add-product',
-                element: <AddProducts></AddProducts>
+                loader: ({params}) => fetch(`https://assignment-12-server-site-eight.vercel.app/products-category/${params.id}`)
             },
             {
                 path: '/login',
@@ -89,7 +85,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://assignment-12-server-site-eight.vercel.app/bookings/${params.id}`)
             },
         ]
     },

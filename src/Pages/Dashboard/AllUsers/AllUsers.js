@@ -7,14 +7,14 @@ const AllUsers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users');
+            const res = await fetch('https://assignment-12-server-site-eight.vercel.app/users');
             const data = await res.json();
             return data;
         }
     });
 
     useEffect(() => {
-        fetch('http://localhost:5000/users-seller')
+        fetch('https://assignment-12-server-site-eight.vercel.app/users-seller')
             .then(res => res.json())
             .then(data => {
                 setIsSeller(data)
@@ -22,7 +22,7 @@ const AllUsers = () => {
     }, [])
 
     const handleVerify = id => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/users/admin/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const AllUsers = () => {
     }
 
     const handleDelete = user => {
-        fetch(`http://localhost:5000/admin/users/${user}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/admin/users/${user}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

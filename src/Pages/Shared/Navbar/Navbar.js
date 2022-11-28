@@ -11,17 +11,18 @@ const Navbar = () => {
     }
     const menuItems = <>
         <li><Link to={'/'}>Home</Link></li>
-        <li><Link to={'/about'}>About</Link></li>
         <li><Link to={'/blog'}>Blog</Link></li>
-        <li><Link to={'/contact-us'}>Contact Us</Link></li>
         {
             user?.uid ?
                 <>
                     <li><Link to={'/dashboard'}>Dashboard</Link></li>
-                    <li><button onClick={handleLogOut}>LogOut</button></li>
+                    <li><button onClick={handleLogOut}>Sign Out</button></li>
                 </>
                 :
-                <li><Link to={'/login'}>Login</Link></li>
+                <>
+                    <li><Link to={'/login'}>SignIn</Link></li>
+                    <li><Link to={'/signup'}>Signup</Link></li>
+                </>
         }
     </>
     return (
@@ -41,9 +42,9 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal p-0">
                     {menuItems}
                 </ul>
-               
+
             </div>
-            
+
         </div>
     );
 };

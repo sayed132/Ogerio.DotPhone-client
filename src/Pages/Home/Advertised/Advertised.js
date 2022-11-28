@@ -10,7 +10,7 @@ const Advertised = () => {
     const [verify, setVerify] = useState(false)
     // useEffect(() => {
         
-    //         fetch('http://localhost:5000/users')
+    //         fetch('https://assignment-12-server-site-eight.vercel.app/users')
     //             .then(res => res.json())
     //             .then(data => {
     //                 console.log('users data',data);
@@ -23,7 +23,7 @@ const Advertised = () => {
 
     const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['products'],
-        queryFn: () => fetch('http://localhost:5000/advertised')
+        queryFn: () => fetch('https://assignment-12-server-site-eight.vercel.app/advertised')
             .then(res => res.json())
 
     })

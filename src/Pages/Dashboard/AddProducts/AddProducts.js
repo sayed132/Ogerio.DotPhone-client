@@ -45,7 +45,7 @@ const AddProducts = () => {
                         image: imgData.data.url
                     }
 
-                    fetch('http://localhost:5000/add-product', {
+                    fetch('https://assignment-12-server-site-eight.vercel.app/add-product', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const ReportToAdmin = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const url = 'http://localhost:5000/report-to-admin';
+    const url = 'https://assignment-12-server-site-eight.vercel.app/report-to-admin';
 
 
     const { data: products = [], refetch } = useQuery({
@@ -27,7 +27,7 @@ const ReportToAdmin = () => {
     })
 
     const handleDelete = product => {
-        fetch(`http://localhost:5000/report-to-admin/${product}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/report-to-admin/${product}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

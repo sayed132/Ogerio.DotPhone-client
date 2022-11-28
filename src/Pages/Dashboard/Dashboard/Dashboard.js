@@ -7,7 +7,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const Dashboard = () => {
     const { user, logOut } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?buyerEmail=${user?.email}`;
+    const url = `https://assignment-12-server-site-eight.vercel.app/bookings?buyerEmail=${user?.email}`;
 
 
     const { data: bookings = [], refetch } = useQuery({
@@ -27,7 +27,7 @@ const Dashboard = () => {
     })
 
     // const handleMakeAdmin = id => {
-    //     fetch(`http://localhost:5000/users/admin/${id}`, {
+    //     fetch(`https://assignment-12-server-site-eight.vercel.app/users/admin/${id}`, {
     //         method: 'PUT',
     //         headers: {
     //             authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -43,7 +43,7 @@ const Dashboard = () => {
     // }
 
     const handleDelete = booking => {
-        fetch(`http://localhost:5000/bookings/${booking}`, {
+        fetch(`https://assignment-12-server-site-eight.vercel.app/bookings/${booking}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
