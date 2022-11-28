@@ -10,7 +10,7 @@ const Dashboard = () => {
     const url = `http://localhost:5000/bookings?buyerEmail=${user?.email}`;
 
 
-    const { data: bookings = [] , refetch} = useQuery({
+    const { data: bookings = [], refetch } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
@@ -18,7 +18,7 @@ const Dashboard = () => {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
             });
-            if(res.status === 401 || res.status === 403){
+            if (res.status === 401 || res.status === 403) {
                 return logOut()
             }
             const data = await res.json();
@@ -44,18 +44,18 @@ const Dashboard = () => {
 
     const handleDelete = booking => {
         fetch(`http://localhost:5000/bookings/${booking}`, {
-            method: 'DELETE', 
+            method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.deletedCount > 0){
-                refetch();
-                toast.success(`Product ${booking.productName} deleted successfully`)
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(`Product ${booking.productName} deleted successfully`)
+                }
+            })
     }
 
     return (
@@ -82,17 +82,17 @@ const Dashboard = () => {
                             bookings.map((booking, i) => <tr key={booking._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
-                                <div className="w-12 rounded-full">
-                                    <img src={booking.image} alt="" />
-                                </div>
-                            </div></td>
+                                    <div className="w-12 rounded-full">
+                                        <img src={booking.image} alt="" />
+                                    </div>
+                                </div></td>
                                 <td>{booking.buyerName}</td>
                                 <td>{booking.productName}</td>
                                 <td>{booking.buyerLocation}</td>
                                 <td>{booking.bookingTime}</td>
                                 <td>{booking.resellPrice} tk</td>
                                 <td>
-                                {
+                                    {
                                         booking.resellPrice && !booking.paid &&
                                         <Link to={`/dashboard/payment/${booking._id}`}>
                                             <button className='btn btn-primary btn-sm text-white'>Pay Now</button>
