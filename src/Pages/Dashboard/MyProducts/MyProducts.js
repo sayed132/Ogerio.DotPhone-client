@@ -41,24 +41,24 @@ const MyProducts = () => {
                 }
             })
     }
+    
+    const handleAdvertised = id => {
+        fetch(`http://localhost:5000/my-products/${id}`, {
+            method: 'PATCH',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({status: true})
+        })
+            // .then(res => res.json())
+            // .then(data => {
+            //     if (data.modifiedCount > 0) {
+            //         toast.success('Added Advertised successful.')
+            //         refetch();
+            //     }
+            // })
+    }
 
-    // const handleAdvertised = products => {
-       
-    //     fetch(`http://localhost:5000/advertised${data.id}`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'content-type': 'application/json',
-    //             authorization: `bearer ${localStorage.getItem('accessToken')}`
-    //         },
-    //         body: JSON.stringify(products)
-    //     })
-    //     .then(res => res.json())
-    //     .then(result => {
-    //         console.log(result);
-    //         toast.success('Advertised added successfully');
-    //         // navigate('/dashboard/my-products')
-    //     })
-    // }
 
     return (
         <div>
@@ -96,7 +96,11 @@ const MyProducts = () => {
                                 <td>
                                     {
                                         product.resellPrice && !product.paid &&
-                                        <button className='btn btn-primary btn-sm text-white'>In Store</button>
+                                        <button onClick={() => handleAdvertised(product._id)} className='btn btn-primary btn-sm text-white'>In Store</button>
+                                    }
+                                    {
+                                        product.resellPrice && !product.paid && product.status &&
+                                        <button className='btn btn-primary btn-sm text-white'>Available on Advertised</button>
                                     }
                                     {
                                         product.resellPrice && product.paid &&

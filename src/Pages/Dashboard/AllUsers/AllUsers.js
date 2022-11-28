@@ -12,7 +12,7 @@ const AllUsers = () => {
         }
     });
 
-    const handleMakeAdmin = id => {
+    const handleVerify = id => {
         fetch(`http://localhost:5000/users/admin/${id}`, {
             method: 'PUT',
             headers: {
@@ -75,7 +75,7 @@ const AllUsers = () => {
                                 <td>{user.account_type}</td>
                                 <td>{user.account_create_time}</td>
                                 <td>
-                                    {user?.verify !== true && <button onClick={() => handleMakeAdmin(user._id)} className='btn btn-xs btn-primary'>Make Verified</button>}
+                                    {user?.verify !== true && <button onClick={() => handleVerify(user._id)} className='btn btn-xs btn-primary'>Make Verified</button>}
                                     {user?.verify && <p className='bg-green-600 text-white text-center text-sm rounded-lg py-1'>Verified</p>}
                                 </td>
                                 <td>{<button onClick={() => handleDelete(user._id)} className='btn btn-xs btn-danger'>Delete</button>}</td>
