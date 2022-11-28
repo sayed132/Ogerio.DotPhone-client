@@ -1,19 +1,33 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../Context/AuthProvider';
 
-const AllProducts = () => {
+const ReportToAdmin = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+    const url = 'http://localhost:5000/report-to-admin';
+
+
     const { data: products = [], refetch } = useQuery({
-        queryKey: ['all-products'],
+        queryKey: ['my-products', user?.email],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/all-products');
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            if (res.status === 401 || res.status === 403) {
+                return logOut()
+            }
             const data = await res.json();
+            console.log(data);
             return data;
         }
-    });
+    })
 
     const handleDelete = product => {
-        fetch(`http://localhost:5000/all-product/${product}`, {
+        fetch(`http://localhost:5000/report-to-admin/${product}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -22,34 +36,35 @@ const AllProducts = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.deletedCount > 0) {
-                    toast.success(`Product ${product.productName} deleted successfully`)
                     refetch();
+                    toast.success(`Product ${product.productName} deleted successfully`)
                 }
             })
     }
+    
+
 
     return (
         <div>
-            <h2 className="text-3xl">All Products</h2>
+            <h3 className="text-3xl mb-5">Report Items</h3>
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                <table className="table table-compact w-full">
                     <thead>
                         <tr>
-                            <th>n</th>
+                            <th></th>
                             <th>Image</th>
-                            <th>Seller Name</th>
+                            <th>Reporter Name</th>
+                            <th>Reporter email</th>
                             <th>Seller Email</th>
-                            <th>Category</th>
-                            <th>Product Name</th>
-                            <th>Posted Time</th>
-                            <th>Sell price</th>
-                            <th>Original price</th>
-                            <th>Location</th>
-                            <th>Year of uses</th>
+                            <th>Reported Time</th>
                             <th>Delete</th>
+                            <th>productName</th>
+                            <th>category_name</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>
+
                         {
                             products.map((product, i) => <tr key={product._id}>
                                 <th>{i + 1}</th>
@@ -58,20 +73,17 @@ const AllProducts = () => {
                                         <img src={product.image} alt="" />
                                     </div>
                                 </div></td>
-                                <td>{product.sellerName}</td>
+                                <td>{product.reporterName}</td>
+                                <td>{product.reporterEmail}</td>
                                 <td>{product.sellerEmail}</td>
+                                <td>{product.reportTime}</td>
+                                <td>{<button onClick={() => handleDelete(product._id)} className='btn btn-xs btn-danger'>Delete</button>}</td>
+                                <td>{product.productName} tk</td>
                                 <td>{product.category_name}</td>
-                                <td>{product.productName}</td>
-                                <td>{product.postedTime}</td>
                                 <td>{product.resellPrice}</td>
-                                <td>{product.originalPrice}</td>
-                                <td>{product.productLocation}</td>
-                                <td>{product.uses}</td>
-                                <td><td>{<button onClick={() => handleDelete(product._id)} className='btn btn-xs btn-danger'>Delete</button>}</td></td>
 
                             </tr>)
                         }
-
                     </tbody>
                 </table>
             </div>
@@ -79,4 +91,4 @@ const AllProducts = () => {
     );
 };
 
-export default AllProducts;
+export default ReportToAdmin;

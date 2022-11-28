@@ -10,6 +10,7 @@ import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import MyReqOrders from "../../Pages/Dashboard/MyReqOrders/MyReqOrders";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
+import ReportToAdmin from "../../Pages/Dashboard/ReportToAdmin/ReportToAdmin";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ProductDetails from "../../Pages/Services/ProductDetails/ProductDetails";
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/allusers',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: '/dashboard/report-to-admin',
+                element: <AdminRoute><ReportToAdmin></ReportToAdmin></AdminRoute>
             },
             {
                 path: '/dashboard/all-products',
