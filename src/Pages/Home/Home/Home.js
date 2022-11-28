@@ -5,7 +5,7 @@ import Banner from '../Banner/Banner'
 import HomeCategory from '../HomeCategory/HomeCategory';
 const Home = () => {
     return (
-        <div>
+        <div className='mx-5'>
             <Banner></Banner>
             <HomeCategory></HomeCategory>
             <Advertised></Advertised>

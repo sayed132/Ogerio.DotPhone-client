@@ -4,9 +4,10 @@ import PrimaryButton from '../../../Components/PrimaryButton';
 
 const Banner = () => {
     return (
-        <div className="hero p-20 shadow-md rounded-md">
+        <div className="hero shadow-md rounded-md">
             <div className="hero-content flex-col lg:flex-row-reverse">
-                <img src={bannerImg} className=" rounded-lg lg:w-1/2 shadow-2xl" alt='Chair'/>
+            <img src={bannerImg} className="rounded-lg lg:w-1/2 shadow-2xl" alt='banner'/>
+            
                 <div>
                     <h1 className="text-5xl font-bold">Latest Lunching Phone!</h1>
                     <p className="py-6">A magical new way to interact with iPhone. Groundbreaking safety features designed to save lives. An innovative 48MP camera for mind-blowing detail. All powered by the ultimate smartphone chip.</p>
