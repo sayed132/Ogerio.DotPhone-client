@@ -100,7 +100,7 @@ const Dashboard = () => {
                                     }
                                     {
                                         booking.resellPrice && booking.paid &&
-                                        <button className='btn btn-primary btn-sm text-white' disabled>Paid</button>
+                                        <button className='btn btn-primary btn-sm text-white' disabled>Sold Out</button>
                                     }
                                 </td>
                                 <td>{<button onClick={() => handleDelete(booking._id)} className='btn btn-xs btn-danger'>Delete</button>}</td>

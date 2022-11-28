@@ -13,14 +13,6 @@ const AddProducts = () => {
     const navigate = useNavigate();
     const imageHostKey = process.env.REACT_APP_imagebb_key;
 
-    // const { data: addProducts, isLoading } = useQuery({
-    //     queryKey: ['specialty'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/add-product');
-    //         const data = await res.json();
-    //         return data;
-    //     }
-    // })
 
     const handleAddProduct = data => {
         const name = user?.displayName;
