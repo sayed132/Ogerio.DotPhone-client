@@ -1,6 +1,6 @@
 # Ogerio.DotPhone A Second Hand mobile Selling Platform
 
-Live Client Site Link: [Ogerio DotPhone](https://github.com/facebook/create-react-app).
+Live Client Site Link: [Ogerio DotPhone](https://ogerio-dotphone.web.app/).
 
 ## Available Scripts
 
